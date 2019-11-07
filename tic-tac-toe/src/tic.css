@@ -1,0 +1,26 @@
+.square {
+    color: black;
+    background: teal;
+
+    float: left;
+    font-size: 96px;
+    font-weight: bold;
+     height: 100px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 100px;
+}
+.box{
+    height:300px;
+    width:300px;
+    margin-left:580px;
+}
+
+.board-row:after{
+    clear: both;
+    content: "";
+    display:block;
+
+  }
