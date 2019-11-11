@@ -29,3 +29,10 @@ td{
   height:5px;
   width:5px;
 }
+
+td .verticalLine {
+  height:30px;
+  width:5px;
+  border-left: 1px solid red;
+
+}
