@@ -10,46 +10,146 @@ export default function Game() {
    let [timesPlayed,setTimesPlayed] = useState(1);
    let [storeIndex1,setStoreIndex1] = useState();
    let [visited,setVisited] = useState([]);
-  
+   let [playerCount,setPlayerCount] = useState([]);
+    // let [boxCreated,setBoxCreated] = useState(false);
 
    const checkLastUser =(indexOfLastUser) => {
+       console.log("player count : ",playerCount);
+       let count = [...playerCount];
     if(visited.includes(1) && visited.includes(7) && visited.includes(9) && visited.includes(15)) {
-        console.log("index check",)
-        document.getElementsByName(8)[0].innerHTML =indexOfLastUser;
+        if(!visited.includes(8)){
+            console.log("index check",)
+            document.getElementsByName(8)[0].innerHTML =indexOfLastUser;
+            visited.push(8);
+            setVisited(visited);
+            count.push(indexOfLastUser);
+            setPlayerCount(count);
+            let created = true
+            // setBoxCreated(created);
+            // console.log("box created : ",boxCreated);
+            
+            
+        }
+       
     }
-    else if(visited.includes(3) && visited.includes(9) && visited.includes(11) && visited.includes(17)){
-        document.getElementsByName(10)[0].innerHTML = indexOfLastUser;
+    if(visited.includes(3) && visited.includes(9) && visited.includes(11) && visited.includes(17)){
+        if(!visited.includes(10)){
+            document.getElementsByName(10)[0].innerHTML = indexOfLastUser;
+            visited.push(10);
+            setVisited(visited);
+            count.push(indexOfLastUser);
+            setPlayerCount(count);
+            //  setBoxCreated(!boxCreated);
+        }
+        
     }
-    else if(visited.includes(5) && visited.includes(11) && visited.includes(19) && visited.includes(13)){
-        document.getElementsByName(12)[0].innerHTML = indexOfLastUser;
+     if(visited.includes(5) && visited.includes(11) && visited.includes(19) && visited.includes(13)){
+        if(!visited.includes(12)){
+            document.getElementsByName(12)[0].innerHTML = indexOfLastUser;
+            visited.push(12);
+            setVisited(visited);
+            count.push(indexOfLastUser);
+            setPlayerCount(count);
+            //  setBoxCreated(!boxCreated);
+        }
+       
     }
-  else if (visited.includes(15) && visited.includes(21) && visited.includes(23) && visited.includes(29)){
-    document.getElementsByName(22)[0].innerHTML = indexOfLastUser;
-  }
-  else if(visited.includes(17) && visited.includes(23) && visited.includes(25) && visited.includes(31)){
-    document.getElementsByName(24)[0].innerHTML = indexOfLastUser;
-  }
+    if (visited.includes(15) && visited.includes(21) && visited.includes(23) && visited.includes(29)){
+        if(!visited.includes(22)){
+            document.getElementsByName(22)[0].innerHTML = indexOfLastUser;
+            visited.push(22);
+            setVisited(visited);
+            count.push(indexOfLastUser);
+            setPlayerCount(count);
+            //  setBoxCreated(!boxCreated);
+        }
+        
+    }
+     if(visited.includes(17) && visited.includes(23) && visited.includes(25) && visited.includes(31)){
+        if(!visited.includes(24)){
+            document.getElementsByName(24)[0].innerHTML = indexOfLastUser;
+            visited.push(24);
+            setVisited(visited);
+            count.push(indexOfLastUser);
+            setPlayerCount(count);
+            // setBoxCreated(!boxCreated);
+        }
+        
+    }
 
-  else if(visited.includes(19) && visited.includes(25) && visited.includes(33) && visited.includes(27)){
-    document.getElementsByName(26)[0].innerHTML = indexOfLastUser;
+     if(visited.includes(19) && visited.includes(25) && visited.includes(33) && visited.includes(27)){
+        if(!visited.includes(26)){
+            document.getElementsByName(26)[0].innerHTML = indexOfLastUser;
+            visited.push(26);
+            setVisited(visited);
+            count.push(indexOfLastUser);
+            setPlayerCount(count);
+            //  setBoxCreated(!boxCreated);
+        }
+        
 
-  }
-   else if(visited.includes(29) && visited.includes(35) && visited.includes(37) && visited.includes(43)){
-    document.getElementsByName(36)[0].innerHTML =indexOfLastUser;
+    }
+     if(visited.includes(29) && visited.includes(35) && visited.includes(37) && visited.includes(43)){
+        if(!visited.includes(36)){
+            document.getElementsByName(36)[0].innerHTML =indexOfLastUser;
+            visited.push(36);
+            setVisited(visited);
+            count.push(indexOfLastUser);
+            setPlayerCount(count);
+            //  setBoxCreated(!boxCreated);
+            
+        }
+        
 
    }
-    else if( visited.includes(31) && visited.includes(37) && visited.includes(39) && visited.includes(45)){
-        document.getElementsByName(38)[0].innerHTML =indexOfLastUser;
+    if( visited.includes(31) && visited.includes(37) && visited.includes(39) && visited.includes(45)){
+        if(!visited.includes(38)){
+            document.getElementsByName(38)[0].innerHTML =indexOfLastUser;
+            visited.push(38);
+            setVisited(visited);
+            count.push(indexOfLastUser);
+            setPlayerCount(count);
+            //  setBoxCreated(!boxCreated);
+        }
+        
 
     }
-    else if(visited.includes(33) && visited.includes(39) && visited.includes(41) && visited.includes(47)){
-        document.getElementsByName(40)[0].innerHTML = indexOfLastUser;
+     if(visited.includes(33) && visited.includes(39) && visited.includes(41) && visited.includes(47)){
+        if(!visited.includes(40)){
+            document.getElementsByName(40)[0].innerHTML =indexOfLastUser;
+            visited.push(40);
+            setVisited(visited);
+            count.push(indexOfLastUser);
+            setPlayerCount(count);
+            //  setBoxCreated(!boxCreated);
+        }
+      
 
     }
 }
 
+if(playerCount.length == 9) {
+    let count = 1;
+    let m = 0;
+    let win;
+    
+    for (let i = 0; i < playerCount.length; i++) {
+        for (let j = i; j < playerCount.length; j++) {
+          if (playerCount[i] == playerCount[j]) m++;
+          if (count < m) {
+            count = m;
+            win = playerCount[i];
+          }
+        }
+      
+      m = 0;
+      }
+      
+      alert(win + " ( " + count + " times ) ");
+}
+
    let addLine =function (storeIndex1,storeIndex2,currentPlayer)  {
-        let visitedArray = [...visited];
+     
        console.log("current Player :",currentPlayer)
 
    let storeMaxValue =  Math.max(storeIndex2,storeIndex1);
@@ -134,7 +234,18 @@ export default function Game() {
                 setBox(array);
                 console.log("box...",box);
               addLine(storeIndex1,storeIndex2,currentPlayer);
-                setCurrentPlayer(!currentPlayer);
+              setCurrentPlayer(!currentPlayer);
+            //   if(boxCreated == true){
+            //       console.log("current playuer playing : ",currentPlayer);
+            //       let c = true;
+            //     setCurrentPlayer(c);
+            //     setBoxCreated(!boxCreated);
+            //   }
+            //   else if (boxCreated == false){
+            //     console.log("current playuer playing in false : ",currentPlayer); 
+            //     setCurrentPlayer(!currentPlayer);
+            //   }
+                 
                 
             }
             else{
@@ -142,32 +253,9 @@ export default function Game() {
                 alert("wrong move...");
                 
             }
-         }
-
-        //  if(index ==1 && index == 7 && index ==9 && index==15){
-            
-        // }
-
-        
+         }      
         
    }
-
-     
-    
-     
-
-//    const getInitialArray =(rows,columns)=>{
-       
-//    }
-
-//    let p;
-//    if(box[0] && box[1] || box[0] && box[4] || box[1] && box[2] || box[1] && box[5] == "1"){
-//        p = <p>**</p>
-//        console.log("yesssss");
-//    }
-//    else if(box[0] && box[1] || box[0] && box[4] || box[1] && box[2] || box[1] && box[5] == "0"){
-//        p= <p>--</p>
-//    }
 
 const  renderSquare =(index) => {
        return(
