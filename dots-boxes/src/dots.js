@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState ,useRef } from 'react';
 import './Dots.css';
 import Dot from './Dot';
 
@@ -11,9 +11,24 @@ export default function Game() {
    let [storeIndex1,setStoreIndex1] = useState();
    let [visited,setVisited] = useState([]);
    let [playerCount,setPlayerCount] = useState([]);
-   let [winner ,setWinner] = useState();
-;
-//  let [boxCreated,setBoxCreated] = useState(false);
+   //const [ref, setRef] = useState([React.createRef(),React.createRef(),React.createRef()]);
+
+   let reff = useRef([React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef(),
+    React.createRef(),React.createRef(),React.createRef()]);
 
    const checkLastUser =(indexOfLastUser) => {
        console.log("player count : ",playerCount);
@@ -21,16 +36,12 @@ export default function Game() {
 
        const addCenter = (i) =>{
         if(!visited.includes(i)){
-            document.getElementsByName(i)[0].innerHTML =indexOfLastUser;
+            reff.current[i].current.innerHTML =  indexOfLastUser;
             visited.push(i);
             setVisited(visited);
             count.push(indexOfLastUser);
             setPlayerCount(count);
-            // let created = true
 
-            // setBoxCreated(!boxCreated);
-            // let arr=boxCreated;
-            //  console.log("box created : ",boxCreated);
         }
 }
     if(visited.includes(1) && visited.includes(7) && visited.includes(9) && visited.includes(15)) {
@@ -62,8 +73,6 @@ export default function Game() {
     }
 }
 
-//console.log("box created : ",boxCreated);
-
    let addLine =function (storeIndex1,storeIndex2,currentPlayer)  {
        console.log("current Player :",currentPlayer)
 
@@ -73,9 +82,10 @@ export default function Game() {
       let result = storeIndex2 - storeIndex1;
       
       if(result == 2 || result == -2){
-        let actualResult = Math.abs(storeMaxValue)-1;
+        let actualResult = Math.abs(storeMaxValue)-1;     
 
-        document.getElementsByName(actualResult)[0].innerHTML = `p${currentPlayer}`
+        reff.current[actualResult].current.innerHTML =  `p${currentPlayer}`;
+        console.log("actual index : ",actualResult);
         visited.push(actualResult);
         setVisited(visited);
         checkLastUser(currentPlayer);
@@ -84,8 +94,9 @@ export default function Game() {
 
       if(result == 14 || result == -14) {
         let actualResult  =Math.abs(storeMinValue) + 7;
-
-        document.getElementsByName(actualResult)[0].innerHTML = `p${currentPlayer}`
+     
+        reff.current[actualResult].current.innerHTML=`p${currentPlayer}`;
+        console.log("actual Index : ",actualResult)
         visited.push(actualResult);
         setVisited(visited);
         checkLastUser(currentPlayer);
@@ -116,21 +127,6 @@ export default function Game() {
                 setBox(array);
               addLine(storeIndex1,storeIndex2,currentPlayer);
               setCurrentPlayer(!currentPlayer);
-            //  const winn = calculaterWin();
-             
-                
-              
-            //   if(boxCreated == true){
-            //       console.log("current playuer playing : ",currentPlayer);
-            //       let c = true;
-            //     setCurrentPlayer(c);
-            //     setBoxCreated(!boxCreated);
-            //   }
-            //   else if (boxCreated == false){
-            //     console.log("current playuer playing in false : ",currentPlayer); 
-            //     setCurrentPlayer(!currentPlayer);
-            //   }
-                 
                 
             }
             else{
@@ -165,6 +161,7 @@ export default function Game() {
 
     const win = calculaterWin();
 
+
     
    
 
@@ -179,81 +176,79 @@ return(
         <tr>
             
             <td>{renderSquare(0)}</td>
-            <td align="center" name="1" > <img src="image/clear.gif" width="30" height="5"></img></td>           
+            <td align="center" name="1" ref={reff.current[1]}> <img src="image/clear.gif" width="30" height="5"></img></td>           
             <td>{renderSquare(2)}</td>  
-            <td align="center" name="3"> <img src="image/clear.gif" width="30" height="5"></img></td>  
+            <td align="center" name="3" ref={reff.current[3]}> <img src="image/clear.gif" width="30" height="5"></img></td>  
             <td>{renderSquare(4)}</td>  
-            <td align="center" name ="5"> <img src="image/clear.gif" width="30" height="5"></img></td> 
+            <td align="center" name ="5" ref={reff.current[5]}> <img src="image/clear.gif" width="30" height="5"></img></td> 
             <td>{renderSquare(6)}</td>  
          
             
         </tr>
     
     <tr>
-    <td align="center" name ="7"> <img src="image/clear.gif" width="5" height="30" ></img></td>
-        <td align="center" name ="8"> <img src="image/clear.gif" width="30" height="30"></img></td>
-        <td align="center" name ="9"> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name ="10"> <img src="image/clear.gif" width="30" height="30"></img></td>
-        <td align="center" name ="11"> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name ="12"> <img src="image/clear.gif" width="30" height="30"></img></td>
-        <td align="center" name ="13"> <img src="image/clear.gif" width="5" height="30"></img></td>
+    <td align="center" name ="7" ref={reff.current[7]}> <img src="image/clear.gif" width="5" height="30" ></img></td>
+        <td align="center" name ="8" ref={reff.current[8]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name ="9" ref={reff.current[9]}> <img src="image/clear.gif" width="5" height="30"></img></td>
+        <td align="center" name ="10" ref={reff.current[10]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name ="11" ref={reff.current[11]}> <img src="image/clear.gif" width="5" height="30"></img></td>
+        <td align="center" name ="12" ref={reff.current[12]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name ="13" ref={reff.current[13]}> <img src="image/clear.gif" width="5" height="30"></img></td>
     </tr>
 
     <tr>
     <td>{renderSquare(14)}</td>
-        <td align="center" name="15"> <img src="image/clear.gif" width="30" height="5"></img></td>           
+        <td align="center" name="15" ref={reff.current[15]}> <img src="image/clear.gif" width="30" height="5"></img></td>           
         <td>{renderSquare(16)}</td> 
-        <td align="center" name="17"> <img src="image/clear.gif" width="30" height="5"></img></td>  
+        <td align="center" name="17" ref={reff.current[17]}> <img src="image/clear.gif" width="30" height="5"></img></td>  
         <td>{renderSquare(18)}</td>  
-        <td align="center" name="19"> <img src="image/clear.gif" width="30" height="5"></img></td> 
+        <td align="center" name="19" ref={reff.current[19]}> <img src="image/clear.gif" width="30" height="5"></img></td> 
         <td>{renderSquare(20)}</td>  
     </tr>
     
     <tr>
-        <td align="center" name="21"> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="22"> <img src="image/clear.gif" width="30" height="30"></img></td>
-        <td align="center" name="23"> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="24"> <img src="image/clear.gif" width="30" height="30"></img></td>
-        <td align="center" name="25"> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="26"> <img src="image/clear.gif" width="30" height="30"></img></td>
-        <td align="center" name="27"> <img src="image/clear.gif" width="5" height="30"></img></td>
+        <td align="center" name="21" ref={reff.current[21]}> <img src="image/clear.gif" width="5" height="30"></img></td>
+        <td align="center" name="22" ref={reff.current[22]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="23" ref={reff.current[23]}> <img src="image/clear.gif" width="5" height="30"></img></td>
+        <td align="center" name="24" ref={reff.current[24]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="25" ref={reff.current[25]}> <img src="image/clear.gif" width="5" height="30"></img></td>
+        <td align="center" name="26" ref={reff.current[26]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="27" ref={reff.current[27]}> <img src="image/clear.gif" width="5" height="30"></img></td>
    </tr>
 
     <tr>
     <td>{renderSquare(28)}</td>
-        <td align="center" name="29"> <img src="image/clear.gif" width="30" height="5"></img></td>           
+        <td align="center" name="29" ref={reff.current[29]}> <img src="image/clear.gif" width="30" height="5"></img></td>           
         <td>{renderSquare(30)}</td> 
-        <td align="center" name="31"> <img src="image/clear.gif" width="30" height="5"></img></td>  
+        <td align="center" name="31" ref={reff.current[31]}> <img src="image/clear.gif" width="30" height="5"></img></td>  
         <td>{renderSquare(32)}</td>  
-        <td align="center" name="33"> <img src="image/clear.gif" width="30" height="5"></img></td> 
+        <td align="center" name="33" ref={reff.current[33]}> <img src="image/clear.gif" width="30" height="5"></img></td> 
         <td>{renderSquare(34)}</td>  
     </tr>
     
     <tr>
-        <td align="center" name="35"> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="36"> <img src="image/clear.gif" width="30" height="30"></img></td>
-        <td align="center" name="37"> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="38"> <img src="image/clear.gif" width="30" height="30"></img></td>
-        <td align="center" name="39"> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="40"> <img src="image/clear.gif" width="30" height="30"></img></td>
-        <td align="center" name="41"> <img src="image/clear.gif" width="5" height="30"></img></td>
+        <td align="center" name="35" ref={reff.current[35]}> <img src="image/clear.gif" width="5" height="30"></img></td>
+        <td align="center" name="36" ref={reff.current[36]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="37" ref={reff.current[37]}> <img src="image/clear.gif" width="5" height="30"></img></td>
+        <td align="center" name="38" ref={reff.current[38]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="39" ref={reff.current[39]}> <img src="image/clear.gif" width="5" height="30"></img></td>
+        <td align="center" name="40" ref={reff.current[40]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="41" ref={reff.current[41]}> <img src="image/clear.gif" width="5" height="30"></img></td>
    </tr>
 
     <tr>
         <td>{renderSquare(42)}</td>
-        <td align="center" name="43"> <img src="image/clear.gif" width="30" height="5"></img></td>           
+        <td align="center" name="43" ref={reff.current[43]}> <img src="image/clear.gif" width="30" height="5"></img></td>           
         <td>{renderSquare(44)}</td> 
-        <td align="center" name="45"> <img src="image/clear.gif" width="30" height="5"></img></td>  
+        <td align="center" name="45" ref={reff.current[45]}> <img src="image/clear.gif" width="30" height="5"></img></td>  
         <td>{renderSquare(46)}</td>  
-        <td align="center" name="47"> <img src="image/clear.gif" width="30" height="5"></img></td> 
+        <td align="center" name="47" ref={reff.current[47]}> <img src="image/clear.gif" width="30" height="5"></img></td> 
         <td>{renderSquare(48)}</td>  
             
     </tr>
     </table><hr />
     {win}
-    
-  
-</>
+    </>
 )
 }               
    
