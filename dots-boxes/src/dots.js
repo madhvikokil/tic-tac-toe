@@ -11,6 +11,7 @@ export default function Game() {
    let [storeIndex1,setStoreIndex1] = useState();
    let [visited,setVisited] = useState([]);
    let [playerCount,setPlayerCount] = useState([]);
+   let [winner ,setWinner] = useState();
 ;
 //  let [boxCreated,setBoxCreated] = useState(false);
 
@@ -62,28 +63,6 @@ export default function Game() {
 }
 
 //console.log("box created : ",boxCreated);
-
-
-if(playerCount.length == 9) {
-    let count = 1;
-    let m = 0;
-    let win;
-    
-    for (let i = 0; i < playerCount.length; i++) {
-        for (let j = i; j < playerCount.length; j++) {
-          if (playerCount[i] == playerCount[j]) m++;
-          if (count < m) {
-            count = m;
-            win = playerCount[i];
-          }
-        }
-      
-      m = 0;
-      }
-      
-      alert(win + " ( " + count + " times ) ");
-}
-
 
    let addLine =function (storeIndex1,storeIndex2,currentPlayer)  {
        console.log("current Player :",currentPlayer)
@@ -137,6 +116,10 @@ if(playerCount.length == 9) {
                 setBox(array);
               addLine(storeIndex1,storeIndex2,currentPlayer);
               setCurrentPlayer(!currentPlayer);
+            //  const winn = calculaterWin();
+             
+                
+              
             //   if(boxCreated == true){
             //       console.log("current playuer playing : ",currentPlayer);
             //       let c = true;
@@ -156,6 +139,34 @@ if(playerCount.length == 9) {
             }
          }      
     }
+
+    const calculaterWin =() => {
+        if(playerCount.length == 9) {
+            let count = 1;
+        let m = 0;
+        let win;
+        
+        for (let i = 0; i < playerCount.length; i++) {
+            for (let j = i; j < playerCount.length; j++) {
+              if (playerCount[i] == playerCount[j]) m++;
+              if (count < m) {
+                count = m;
+                win = playerCount[i];
+              }
+            }
+          
+          m = 0;
+          }
+    
+         return(<h1>Winner : {win}</h1>)
+        }
+        
+    }
+
+    const win = calculaterWin();
+
+    
+   
 
 const  renderSquare =(index) => {
        return(
@@ -239,6 +250,7 @@ return(
             
     </tr>
     </table><hr />
+    {win}
     
   
 </>
