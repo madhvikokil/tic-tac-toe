@@ -36,3 +36,8 @@ td .verticalLine {
   border-left: 1px solid red;
 
 }
+
+.vl {
+  border-left: 6px solid green;
+  height: 30px;
+}
