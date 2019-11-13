@@ -83,8 +83,9 @@ export default function Game() {
       
       if(result == 2 || result == -2){
         let actualResult = Math.abs(storeMaxValue)-1;     
-
-        reff.current[actualResult].current.innerHTML =  `p${currentPlayer}`;
+         currentPlayer ? reff.current[actualResult].current.style.backgroundColor=" green" :
+         reff.current[actualResult].current.style.backgroundColor=" red";
+        //reff.current[actualResult].current.innerHTML =  `p${currentPlayer}`;
         console.log("actual index : ",actualResult);
         visited.push(actualResult);
         setVisited(visited);
@@ -95,7 +96,10 @@ export default function Game() {
       if(result == 14 || result == -14) {
         let actualResult  =Math.abs(storeMinValue) + 7;
      
-        reff.current[actualResult].current.innerHTML=`p${currentPlayer}`;
+        currentPlayer ? reff.current[actualResult].current.style.backgroundColor=" green" :
+        // current.style.marginLeft="20px :
+        reff.current[actualResult].current.style.backgroundColor=" red";
+        //reff.current[actualResult].current.innerHTML=`p${currentPlayer}`;
         console.log("actual Index : ",actualResult)
         visited.push(actualResult);
         setVisited(visited);
@@ -172,7 +176,7 @@ const  renderSquare =(index) => {
 return(
     <>
     <h1> DOTS AND BOXES </h1>
-    <table border="2px">
+    <table >
         <tr>
             
             <td>{renderSquare(0)}</td>
@@ -188,11 +192,11 @@ return(
     
     <tr>
     <td align="center" name ="7" ref={reff.current[7]}> <img src="image/clear.gif" width="5" height="30" ></img></td>
-        <td align="center" name ="8" ref={reff.current[8]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name ="8" ref={reff.current[8]}> </td>
         <td align="center" name ="9" ref={reff.current[9]}> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name ="10" ref={reff.current[10]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name ="10" ref={reff.current[10]}> </td>
         <td align="center" name ="11" ref={reff.current[11]}> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name ="12" ref={reff.current[12]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name ="12" ref={reff.current[12]}> </td>
         <td align="center" name ="13" ref={reff.current[13]}> <img src="image/clear.gif" width="5" height="30"></img></td>
     </tr>
 
@@ -208,11 +212,11 @@ return(
     
     <tr>
         <td align="center" name="21" ref={reff.current[21]}> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="22" ref={reff.current[22]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="22" ref={reff.current[22]}> </td>
         <td align="center" name="23" ref={reff.current[23]}> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="24" ref={reff.current[24]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="24" ref={reff.current[24]}> </td>
         <td align="center" name="25" ref={reff.current[25]}> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="26" ref={reff.current[26]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="26" ref={reff.current[26]}> </td>
         <td align="center" name="27" ref={reff.current[27]}> <img src="image/clear.gif" width="5" height="30"></img></td>
    </tr>
 
@@ -228,11 +232,11 @@ return(
     
     <tr>
         <td align="center" name="35" ref={reff.current[35]}> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="36" ref={reff.current[36]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="36" ref={reff.current[36]}> </td>
         <td align="center" name="37" ref={reff.current[37]}> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="38" ref={reff.current[38]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="38" ref={reff.current[38]}> </td>
         <td align="center" name="39" ref={reff.current[39]}> <img src="image/clear.gif" width="5" height="30"></img></td>
-        <td align="center" name="40" ref={reff.current[40]}> <img src="image/clear.gif" width="30" height="30"></img></td>
+        <td align="center" name="40" ref={reff.current[40]}> </td>
         <td align="center" name="41" ref={reff.current[41]}> <img src="image/clear.gif" width="5" height="30"></img></td>
    </tr>
 
@@ -246,7 +250,7 @@ return(
         <td>{renderSquare(48)}</td>  
             
     </tr>
-    </table><hr />
+    </table><br/><br/><hr />
     {win}
     </>
 )
