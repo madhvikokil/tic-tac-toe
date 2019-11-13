@@ -142,34 +142,15 @@ export default function Game() {
 
     const calculaterWin =() => {
         if(playerCount.length == 9) {
-        //     let count = 1;
-        // let m = 0;
-        // let win;
-        
-        // for (let i = 0; i < playerCount.length; i++) {
-        //     for (let j = i; j < playerCount.length; j++) {
-        //       if (playerCount[i] == playerCount[j]) m++;
-        //       if (count < m) {
-        //         count = m;
-        //         win = playerCount[i];
-        //       }
-        //     }
-          
-        //   m = 0;
-        //   }
-    
-        //  return(<h1>Winner : {win}</h1>)
-        // }
-
         const store = playerCount.reduce((accumulator, currentValue) => accumulator + currentValue);
 
-if(store > 4) {
-  return <h1>WINNER IS : 1 </h1>
-}
+        if(store > 4) {
+        return <h1>WINNER IS : Player 1 </h1>
+        }
 
-else{
-  return <h1>WINNER IS : 0</h1>
-}
+        else{
+        return <h1>WINNER IS : Player 0</h1>
+        }
         }
         
     }
@@ -187,6 +168,9 @@ const  renderSquare =(index) => {
 return(
     <>
     <h1> DOTS AND BOXES </h1>
+
+<p>Green is Player 1</p>
+<p>Red is player 0</p>
     <table >
         <tr>
             
